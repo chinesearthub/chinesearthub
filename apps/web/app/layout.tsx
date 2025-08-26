@@ -1,3 +1,4 @@
+// apps/web/app/layout.tsx
 import { i18n } from '@/lib/i18n/config';
 import { dir } from 'i18next';
 
