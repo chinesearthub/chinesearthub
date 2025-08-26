@@ -1,0 +1,26 @@
+import { withAuth } from 'next-auth/middleware';
+import { i18n } from '@/lib/i18n/config';
+import { NextResponse } from 'next/server';
+
+export default withAuth(
+  function middleware(req) {
+    // 语言路由处理逻辑
+    const { pathname } = req.nextUrl;
+    const lng = pathname.split('/')[1];
+    
+    if (!i18n.languages.includes(lng)) {
+      return NextResponse.redirect(new URL(`/${i18n.defaultLocale}${pathname}`, req.url));
+    }
+  },
+  {
+    callbacks: {
+      authorized() {
+        return true; // 允许所有访问
+      },
+    },
+  }
+);
+
+export const config = {
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
+};
