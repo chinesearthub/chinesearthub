@@ -1,3 +1,4 @@
+// apps/web/app/[locale]/layout.tsx
 import { useTranslations } from '@/lib/i18n';
 
 export default function LocaleLayout({
