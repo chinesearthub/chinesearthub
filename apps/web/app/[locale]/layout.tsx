@@ -1,20 +1,10 @@
-import { i18n } from '@/lib/i18n/config';
-import { dir } from 'i18next';
+import { useTranslations } from '@/lib/i18n';
 
-export async function generateStaticParams() {
-  return i18n.languages.map((lng) => ({ lng }));
-}
-
-export default function RootLayout({
+export default function LocaleLayout({
   children,
-  params: { lng },
 }: {
   children: React.ReactNode;
-  params: { lng: string };
 }) {
-  return (
-    <html lang={lng} dir={dir(lng)}>
-      <body>{children}</body>
-    </html>
-  );
+  const t = useTranslations();
+  return <div className="locale-container">{children}</div>;
 }
