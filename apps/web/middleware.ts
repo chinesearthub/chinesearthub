@@ -4,7 +4,6 @@ import { NextResponse } from 'next/server';
 
 export default withAuth(
   function middleware(req) {
-    // 语言路由处理逻辑
     const { pathname } = req.nextUrl;
     const lng = pathname.split('/')[1];
     
@@ -12,13 +11,7 @@ export default withAuth(
       return NextResponse.redirect(new URL(`/${i18n.defaultLocale}${pathname}`, req.url));
     }
   },
-  {
-    callbacks: {
-      authorized() {
-        return true; // 允许所有访问
-      },
-    },
-  }
+  { callbacks: { authorized: () => true } }
 );
 
 export const config = {
