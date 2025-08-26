@@ -6,9 +6,7 @@ import zh from '@/public/locales/zh/common.json';
 export const i18n = createInstance({
   lng: 'en',
   fallbackLng: 'en',
-  interpolation: {
-    escapeValue: false,
-  },
+  interpolation: { escapeValue: false },
   resources: {
     en: { common: en },
     zh: { common: zh },
