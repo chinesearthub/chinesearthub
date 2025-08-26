@@ -1,4 +1,3 @@
-// next.config.js
 module.exports = {
   i18n: {
     locales: ['en', 'zh'],  // 支持的语言列表
