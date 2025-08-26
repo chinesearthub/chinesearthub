@@ -1,0 +1,69 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  role          String    @default("user")
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  orders        Order[]
+  nameRequests  NameRequest[]
+  affiliate     Affiliate?
+}
+
+model NameRequest {
+  id            String   @id @default(cuid())
+  userId        String?
+  mode          String   // 'translation' or 'meaning'
+  inputName     String
+  desiredMeaning String?
+  style         String
+  createdAt     DateTime @default(now())
+  user          User?    @relation(fields: [userId], references: [id])
+}
+
+model Order {
+  id              String    @id @default(cuid())
+  userId          String
+  total           Decimal   @db.Decimal(10, 2)
+  currency        String    @default("EUR")
+  status          String    @default("pending")
+  paymentIntentId String?
+  createdAt       DateTime  @default(now())
+  user            User      @relation(fields: [userId], references: [id])
+  items           OrderItem[]
+}
+
+model OrderItem {
+  id          String  @id @default(cuid())
+  orderId     String
+  type        String  // 'NAME' or 'PRODUCT'
+  refId       String  // References NameArtwork or Product
+  unitPrice   Decimal @db.Decimal(10, 2)
+  qty         Int     @default(1)
+  order       Order   @relation(fields: [orderId], references: [id])
+}
+
+model Affiliate {
+  userId      String @id
+  code        String @unique
+  clicks      Int    @default(0)
+  conversions Int    @default(0)
+  pending     Decimal @db.Decimal(10, 2) @default(0)
+  paidTotal   Decimal @db.Decimal(10, 2) @default(0)
+  user        User   @relation(fields: [userId], references: [id])
+}
+
+model Metric {
+  id          String @id @default(cuid())
+  key         String @unique
+  valueNumber Int
+}
