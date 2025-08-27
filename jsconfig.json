@@ -3,7 +3,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"],
-      "@lib/*": ["./lib/*"]  // 确保此行存在
+      "@/components/*": ["./components/*"],
+      "@/lib/*": ["./lib/*"]
     }
   }
 }
