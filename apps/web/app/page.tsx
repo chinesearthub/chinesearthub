@@ -3,6 +3,8 @@
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { NameGenerator } from '@/components/NameGenerator';
+// 若路径别名未生效，改用相对路径：
+// import { NameGenerator } from '../../components/NameGenerator';
 import { useLocale } from '@/lib/i18n';
 
 export default function HomePage() {
