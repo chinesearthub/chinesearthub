@@ -1,4 +1,4 @@
-'use client';
+'use client';  // 声明为客户端组件
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
