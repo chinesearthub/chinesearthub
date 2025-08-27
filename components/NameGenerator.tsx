@@ -8,6 +8,7 @@ import { fontPresets, generateNameSuggestions } from '@lib/fonts';
 import { useTranslations } from '@/lib/i18n';
 import { SomeComponent } from 'next-auth/react';
 import { SomeFont } from '@lib/fonts'; 
+import { useLocale } from '@/lib/i18n';  // 确保i18n模块已标记Client
 
 export function NameGenerator() {
   const t = useTranslations();
