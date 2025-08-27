@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';  // Next.js 内置
 import { useSession } from 'next-auth/react';
 import { fontPresets, generateNameSuggestions } from '@lib/fonts';
 import { useTranslations } from '@/lib/i18n';
